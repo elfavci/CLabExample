@@ -180,3 +180,28 @@ int main(){
     return 0;
 }
 
+
+
+//insert this code
+
+void printFormat(struct node *root, struct node *parent, int level, char *childType, int isLast){
+    if(root == NULL) return;
+
+    if(level == 1){
+        printf("%d %d", root->id, root->grade);
+        if(parent != NULL){
+            printf(" (%d %s)", parent->grade, childType);
+        }
+        if (!isLast) {
+            printf(" ");
+        }
+    }
+    else if(level > 1){
+        if(root->right == NULL) {
+            printFormat(root->left, root, level-1, "L", 1);
+        } else {
+            printFormat(root->left, root, level-1, "L", 0);
+            printFormat(root->right, root, level-1, "R", 1);
+        }
+    }
+}
