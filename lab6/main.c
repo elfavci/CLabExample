@@ -205,3 +205,34 @@ void printFormat(struct node *root, struct node *parent, int level, char *childT
         }
     }
 }
+
+
+//insert:
+
+
+void printFormat(struct node *root, struct node *parent, int level, char *childType, int *isFirst) {
+    if (root == NULL) return;
+
+    if (level == 1) {
+        if (!(*isFirst)) {
+            printf(" ");
+        }
+        printf("%d %d", root->id, root->grade);
+        if (parent != NULL) {
+            printf(" (%d %s)", parent->grade, childType);
+        }
+        *isFirst = 0;
+    } else if (level > 1) {
+        printFormat(root->left, root, level-1, "L", isFirst);
+        printFormat(root->right, root, level-1, "R", isFirst);
+    }
+}
+
+void printTree(struct node *root) {
+    int h = treeHeight(root);
+    for (int i = 1; i <= h; i++) {
+        int isFirst = 1;
+        printFormat(root, NULL, i, "", &isFirst);
+        printf("\n");
+    }
+}
