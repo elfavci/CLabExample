@@ -121,6 +121,7 @@ void printTree(struct node *root) {
         printFormat(root, NULL, i, "", &isFirst);
         printf("\n");
     }
+    printf("\n"); 
 }
 
 int main(){
