@@ -184,6 +184,8 @@ int main() {
     inorder(tree);
     printf("\n");
     printTree(tree);
+    printf("\n");
+    printf("\n");
 
     return 0;
 }
